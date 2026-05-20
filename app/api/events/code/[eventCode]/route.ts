@@ -7,10 +7,10 @@ import { db } from '@/lib/db';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { eventCode: string } }
+  { params }: { params: Promise<{ eventCode: string }> }
 ) {
   try {
-    const { eventCode } = params;
+    const { eventCode } = await params;
 
     if (!eventCode || typeof eventCode !== 'string') {
       return NextResponse.json(

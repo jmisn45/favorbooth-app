@@ -14,7 +14,7 @@ const UpdateJobSchema = z.object({
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { jobId: string } }
+  { params }: { params: Promise<{ jobId: string }> }
 ) {
   try {
     // Verify authentication
@@ -37,7 +37,7 @@ export async function PATCH(
     }
 
     const vendorId = payload.vendorId;
-    const { jobId } = params;
+    const { jobId } = await params;
 
     if (!jobId || typeof jobId !== 'string') {
       return NextResponse.json(

@@ -8,10 +8,10 @@ import { getPresignedDownloadUrl, getPublicUrl } from '@/lib/r2';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { groupId: string } }
+  { params }: { params: Promise<{ groupId: string }> }
 ) {
   try {
-    const { groupId } = params;
+    const { groupId } = await params;
 
     if (!groupId || typeof groupId !== 'string') {
       return NextResponse.json(
