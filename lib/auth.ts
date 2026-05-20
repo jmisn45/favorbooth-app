@@ -40,7 +40,7 @@ export function verifyToken(token: string): TokenPayload | null {
 }
 
 // Extract token from Authorization header
-export function extractToken(authHeader?: string): string | null {
+export function extractToken(authHeader: string | null | undefined): string | null {
   if (!authHeader) return null;
   const match = authHeader.match(/^Bearer\s+(.+)$/);
   return match ? match[1] : null;
