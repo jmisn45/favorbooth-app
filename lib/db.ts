@@ -9,16 +9,6 @@ if (!process.env.DATABASE_URL) {
 
 export const db = postgres(process.env.DATABASE_URL);
 
-// Helper function to execute queries
-export async function query(text: string, params?: any[]) {
-  try {
-    return await db(text, params);
-  } catch (error) {
-    console.error('Database query error:', error);
-    throw error;
-  }
-}
-
 // Type definitions for database results
 export type Vendor = {
   id: string;
